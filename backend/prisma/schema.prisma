@@ -1,0 +1,158 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Country {
+  id        Int      @id @default(autoincrement())
+  name      String
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  states    State[]
+
+  @@index([name])
+}
+
+model State {
+  id        Int      @id @default(autoincrement())
+  code      String   @unique
+  name      String
+
+  countryId Int
+  country   Country  @relation(fields: [countryId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  districts District[]
+  userAccesses UserStateAccess[]
+
+  @@index([countryId])
+  @@index([name])
+}
+
+model District {
+  id        Int      @id @default(autoincrement())
+  code      String   @unique
+  name      String
+
+  stateId   Int
+  state     State    @relation(fields: [stateId], references: [id], onDelete: Restrict)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subDistricts SubDistrict[]
+
+  @@index([stateId])
+  @@index([name])
+}
+
+model SubDistrict {
+  id          Int      @id @default(autoincrement())
+  code        String   @unique
+  name        String
+
+  districtId  Int
+  district    District @relation(fields: [districtId], references: [id], onDelete: Restrict)
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  villages    Village[]
+
+  @@index([districtId])
+  @@index([name])
+}
+
+model Village {
+  id             Int         @id @default(autoincrement())
+  code           String      @unique
+  name           String
+
+  subDistrictId  Int
+  subDistrict    SubDistrict @relation(fields: [subDistrictId], references: [id], onDelete: Restrict)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([subDistrictId])
+  @@index([name])
+}
+
+
+// ===============================
+// B2B / Authentication Models
+// ===============================
+
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  planType     String   @default("FREE")
+  role         String   @default("USER")
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  apiKeys      ApiKey[]
+  stateAccess  UserStateAccess[]
+  apiLogs      ApiLog[]
+
+  @@index([email])
+}
+
+model ApiKey {
+  id         Int      @id @default(autoincrement())
+  key        String   @unique
+  secretHash String
+
+  userId     Int
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  apiLogs    ApiLog[]
+
+  @@index([userId])
+}
+
+model UserStateAccess {
+  id        Int      @id @default(autoincrement())
+
+  userId    Int
+  stateId   Int
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  state     State    @relation(fields: [stateId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+
+  @@unique([userId, stateId])
+  @@index([userId])
+  @@index([stateId])
+}
+
+model ApiLog {
+  id           Int      @id @default(autoincrement())
+  endpoint     String
+  responseTime Int
+
+  userId       Int?
+  apiKeyId     Int?
+
+  user         User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  apiKey       ApiKey?  @relation(fields: [apiKeyId], references: [id], onDelete: SetNull)
+
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([userId])
+  @@index([apiKeyId])
+}

@@ -1,0 +1,40 @@
+# Node.js dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.*
+
+# Vercel
+.vercel/
+
+# Build output
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Raw dataset
+data-import/*.xlsx
+
+# Prisma generated files
+backend/generated/
+
+# AI/editor skill files
+backend/.agents/
+backend/.claude/
+backend/.cursor/
+backend/.devin/
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.vscode/

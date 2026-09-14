@@ -1,0 +1,291 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #eef4ff 0%, #f8fafc 50%, #eefcf7 100%);
+  color: #172033;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 50px 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+}
+
+/* Header */
+
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.header h1 {
+  margin: 0 0 10px;
+  font-size: 38px;
+  font-weight: 700;
+  color: #172554;
+}
+
+.header p {
+  margin: 0;
+  font-size: 16px;
+  color: #64748b;
+}
+
+/* Address Selection */
+
+.address-card {
+  background: rgba(255, 255, 255, 0.96);
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #dbe4f0;
+  box-shadow: 0 12px 35px rgba(30, 64, 175, 0.10);
+}
+
+.field {
+  margin-bottom: 22px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.field select {
+  width: 100%;
+  height: 50px;
+  padding: 0 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #172033;
+  font-size: 15px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.field select:hover {
+  border-color: #64748b;
+}
+
+.field select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14);
+}
+
+.field select:disabled {
+  background: #f1f5f9;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Loading / Error */
+
+.status {
+  margin-top: 25px;
+  text-align: center;
+  color: #64748b;
+  font-size: 15px;
+}
+
+.error {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 9px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  color: #be123c;
+}
+
+/* Village Results */
+
+.results {
+  margin-top: 32px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #dbe4f0;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+}
+
+/* Village heading */
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 28px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #ffffff;
+}
+
+.results-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.results-header span {
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Village List */
+
+.village-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 24px 28px 28px;
+}
+
+.village-item {
+  padding: 17px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-left: 4px solid #2563eb;
+  border-radius: 9px;
+  transition: all 0.2s ease;
+}
+
+.village-item:hover {
+  background: #eff6ff;
+  border-left-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.10);
+}
+
+.village-item strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+  color: #172554;
+}
+
+.village-item small {
+  color: #64748b;
+  font-size: 12px;
+}
+
+/* Responsive */
+
+@media (max-width: 700px) {
+  .app {
+    padding: 30px 15px;
+  }
+
+  .header h1 {
+    font-size: 30px;
+  }
+
+  .address-card {
+    padding: 20px;
+  }
+
+  .results-header {
+    padding: 18px 20px;
+  }
+
+  .results-header h2 {
+    font-size: 23px;
+  }
+
+  .village-list {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+/* Village Search */
+
+.search-card {
+  margin-top: 25px;
+  background: #ffffff;
+  padding: 25px 28px;
+  border-radius: 16px;
+  border: 1px solid #dbe4f0;
+  box-shadow: 0 8px 25px rgba(15, 23, 42, 0.07);
+}
+
+.search-heading h2 {
+  margin: 0 0 6px;
+  color: #172554;
+  font-size: 23px;
+}
+
+.search-heading p {
+  margin: 0 0 18px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+}
+
+.search-form input {
+  flex: 1;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 15px;
+  outline: none;
+}
+
+.search-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.search-form button {
+  height: 48px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background: #1d4ed8;
+}
+
+.search-form button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-form button {
+    width: 100%;
+  }
+}
