@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-const API_BASE_URL = "http://localhost:5000/api/v1";
-
+const API_BASE_URL ="https://address-api-platform-backend.vercel.app/api/v1";
 function App() {
   const [states, setStates] = useState([]);
   const [districts, setDistricts] = useState([]);
