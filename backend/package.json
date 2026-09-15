@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "start": "node src/app.js",
-    "dev": "nodemon src/app.js",
-    "build": "prisma generate",
-    "postinstall": "prisma skills sync || exit 0"
-  },
+ "scripts": {
+  "start": "node src/app.js",
+  "dev": "nodemon src/app.js",
+  "build": "prisma generate",
+  "postinstall": "prisma generate"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
