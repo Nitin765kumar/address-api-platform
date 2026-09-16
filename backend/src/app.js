@@ -12,6 +12,7 @@ const apiKeyRoutes = require("./routes/apiKeyRoutes");
 const apiRateLimiter = require("./middleware/rateLimitMiddleware");
 const redisCache = require("./middleware/redisCacheMiddleware");
 const stateAccessRoutes = require("./routes/stateAccessRoutes");
+const demoRoutes = require("./routes/demoRoutes");
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/api/v1/api-keys", apiKeyRoutes);
 // Rate Limited
 // ===============================
 app.use("/api/v1", apiRateLimiter);
+app.use("/api/demo", demoRoutes);
 
 app.use(
     "/api/v1/states",
